@@ -1,0 +1,13 @@
+{
+  "name": "ai-pet",
+  "version": "0.1.0",
+  "description": "바탕화면에 떠 있는 AI 개인 비서 펫",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^45.3.3"
+  }
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>AI 펫</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="bubble" hidden>
+    <header>
+      <span class="name">비서</span>
+      <span class="actions">
+        <button id="reset" title="새 대화">새 대화</button>
+        <button id="close" title="말풍선 닫기">닫기</button>
+        <button id="quit" title="펫 끄기">끄기</button>
+      </span>
+    </header>
+    <div id="log"></div>
+    <div id="menu">
+      <button data-prompt="1번 할 일 메뉴: today Skill로 오늘 할 일과 시간표를 보여줘.">할 일</button>
+      <button data-prompt="2번 개념 공부 메뉴: 지금 단계에서 공부할 개념을 하나 골라 쉽게 설명해줘.">개념 공부</button>
+      <button data-prompt="3번 퀴즈 메뉴: 지금까지 배운 개념으로 퀴즈 한 문제 내줘.">퀴즈</button>
+      <button data-prompt="4번 프로젝트 메뉴: 지금 단계의 프로젝트 목표와 다음 작업을 알려줘.">프로젝트</button>
+      <button data-prompt="5번 최신 트렌드 메뉴: trend-catchup Skill로 다음 트렌드를 알려줘.">최신 트렌드</button>
+      <button data-prompt="6번 취업 지원 회사 목록 메뉴: job-tracker Skill로 지원한 회사 목록을 보여줘.">취업 지원 회사 목록</button>
+      <button data-prompt="w 하루 정리 메뉴: wrapup Skill로 오늘 하루를 정리해줘.">하루 정리</button>
+    </div>
+    <form id="form">
+      <input id="input" placeholder="하고 싶은 말을 입력하세요" autocomplete="off">
+      <button type="submit">보내기</button>
+    </form>
+  </section>
+
+  <div id="pet-wrap">
+    <div id="status"></div>
+    <button id="pet" class="idle" aria-label="비서 펫">
+      <svg viewBox="0 0 120 110" width="120" height="110" aria-hidden="true">
+        <!-- 귀 -->
+        <path d="M26 40 L32 10 L50 30 Z" fill="#ffe3b3" stroke="#6b4f3a" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M94 40 L88 10 L70 30 Z" fill="#ffe3b3" stroke="#6b4f3a" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M33 33 L35 19 L43 29 Z" fill="#ffb4b4"/>
+        <path d="M87 33 L85 19 L77 29 Z" fill="#ffb4b4"/>
+        <!-- 몸 -->
+        <ellipse cx="60" cy="66" rx="44" ry="38" fill="#ffe3b3" stroke="#6b4f3a" stroke-width="3"/>
+        <!-- 볼 -->
+        <ellipse cx="34" cy="76" rx="8" ry="5" fill="#ffb4b4" opacity="0.8"/>
+        <ellipse cx="86" cy="76" rx="8" ry="5" fill="#ffb4b4" opacity="0.8"/>
+        <!-- 눈: 상태마다 하나만 보임 -->
+        <g class="eyes eyes-idle" fill="#3b2a1e">
+          <ellipse cx="44" cy="64" rx="5" ry="6.5"/>
+          <ellipse cx="76" cy="64" rx="5" ry="6.5"/>
+          <circle cx="46" cy="61" r="1.8" fill="#fff"/>
+          <circle cx="78" cy="61" r="1.8" fill="#fff"/>
+        </g>
+        <g class="eyes eyes-happy" fill="none" stroke="#3b2a1e" stroke-width="3.5" stroke-linecap="round">
+          <path d="M38 66 Q44 58 50 66"/>
+          <path d="M70 66 Q76 58 82 66"/>
+        </g>
+        <g class="eyes eyes-thinking" fill="#3b2a1e">
+          <ellipse cx="46" cy="60" rx="4.5" ry="5.5"/>
+          <ellipse cx="78" cy="60" rx="4.5" ry="5.5"/>
+        </g>
+        <!-- 입 -->
+        <path d="M54 80 Q57 84 60 80 Q63 84 66 80" fill="none" stroke="#3b2a1e" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="dots"><i></i><i></i><i></i></span>
+    </button>
+    <div id="handle" title="끌어서 옮기기">· · ·</div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
