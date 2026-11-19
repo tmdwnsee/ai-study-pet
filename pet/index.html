@@ -22,7 +22,7 @@
       <button data-prompt="2번 개념 공부 메뉴: 지금 단계에서 공부할 개념을 하나 골라 쉽게 설명해줘.">개념 공부</button>
       <button data-prompt="3번 퀴즈 메뉴: 지금까지 배운 개념으로 퀴즈 한 문제 내줘.">퀴즈</button>
       <button data-prompt="4번 프로젝트 메뉴: 지금 단계의 프로젝트 목표와 다음 작업을 알려줘.">프로젝트</button>
-      <button data-prompt="5번 최신 트렌드 메뉴: trend-catchup Skill로 다음 트렌드를 알려줘.">최신 트렌드</button>
+      <button data-kind="trends" data-prompt="5번 최신 트렌드 메뉴">최신 트렌드</button>
       <button data-prompt="6번 취업 지원 회사 목록 메뉴: job-tracker Skill로 지원한 회사 목록을 보여줘.">취업 지원 회사 목록</button>
       <button data-prompt="w 하루 정리 메뉴: wrapup Skill로 오늘 하루를 정리해줘.">하루 정리</button>
     </div>
@@ -35,34 +35,60 @@
   <div id="pet-wrap">
     <div id="status"></div>
     <button id="pet" class="idle" aria-label="비서 펫">
-      <svg viewBox="0 0 120 110" width="120" height="110" aria-hidden="true">
-        <!-- 귀 -->
-        <path d="M26 40 L32 10 L50 30 Z" fill="#ffe3b3" stroke="#6b4f3a" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M94 40 L88 10 L70 30 Z" fill="#ffe3b3" stroke="#6b4f3a" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M33 33 L35 19 L43 29 Z" fill="#ffb4b4"/>
-        <path d="M87 33 L85 19 L77 29 Z" fill="#ffb4b4"/>
+      <!-- 펭집사: 외알 안경, 나비넥타이, 찻잔 쟁반을 든 펭귄 집사 -->
+      <svg viewBox="84 26 200 214" width="140" height="150" aria-hidden="true"
+           stroke-linejoin="round" stroke-linecap="round">
+        <ellipse cx="170" cy="234" rx="62" ry="7" fill="#000" opacity="0.08"/>
+        <!-- 발 -->
+        <ellipse cx="150" cy="228" rx="16" ry="7" fill="#f5a742" stroke="#3b2a1e" stroke-width="2.5"/>
+        <ellipse cx="190" cy="228" rx="16" ry="7" fill="#f5a742" stroke="#3b2a1e" stroke-width="2.5"/>
         <!-- 몸 -->
-        <ellipse cx="60" cy="66" rx="44" ry="38" fill="#ffe3b3" stroke="#6b4f3a" stroke-width="3"/>
-        <!-- 볼 -->
-        <ellipse cx="34" cy="76" rx="8" ry="5" fill="#ffb4b4" opacity="0.8"/>
-        <ellipse cx="86" cy="76" rx="8" ry="5" fill="#ffb4b4" opacity="0.8"/>
+        <path d="M110 150 C104 92 130 54 170 54 C210 54 236 92 230 150 C226 202 204 226 170 226 C136 226 114 202 110 150 Z" fill="#2f4468" stroke="#1c2940" stroke-width="3"/>
+        <path class="tuft" d="M162 56 C160 44 168 38 176 42 C170 44 168 50 172 56 Z" fill="#2f4468" stroke="#1c2940" stroke-width="2.5"/>
+        <!-- 얼굴과 배 -->
+        <path d="M170 84 C150 70 122 78 122 104 C122 120 132 128 140 132 C134 150 132 172 136 190 C142 212 156 222 170 222 C184 222 198 212 204 190 C208 172 206 150 200 132 C208 128 218 120 218 104 C218 78 190 70 170 84 Z" fill="#fffaf2"/>
+        <path d="M196 140 C206 160 206 190 196 208 C190 216 182 220 174 222 C194 204 200 172 196 140 Z" fill="#efe6d6"/>
         <!-- 눈: 상태마다 하나만 보임 -->
-        <g class="eyes eyes-idle" fill="#3b2a1e">
-          <ellipse cx="44" cy="64" rx="5" ry="6.5"/>
-          <ellipse cx="76" cy="64" rx="5" ry="6.5"/>
-          <circle cx="46" cy="61" r="1.8" fill="#fff"/>
-          <circle cx="78" cy="61" r="1.8" fill="#fff"/>
+        <g class="eyes eyes-idle">
+          <ellipse cx="148" cy="106" rx="8" ry="10" fill="#1e2a40"/>
+          <ellipse cx="192" cy="106" rx="8" ry="10" fill="#1e2a40"/>
+          <circle cx="151" cy="102" r="3.2" fill="#fff"/>
+          <circle cx="195" cy="102" r="3.2" fill="#fff"/>
+          <circle cx="145.5" cy="110" r="1.4" fill="#fff"/>
+          <circle cx="189.5" cy="110" r="1.4" fill="#fff"/>
         </g>
-        <g class="eyes eyes-happy" fill="none" stroke="#3b2a1e" stroke-width="3.5" stroke-linecap="round">
-          <path d="M38 66 Q44 58 50 66"/>
-          <path d="M70 66 Q76 58 82 66"/>
+        <g class="eyes eyes-happy" fill="none" stroke="#1e2a40" stroke-width="3.5">
+          <path d="M140 109 Q148 98 156 109"/>
+          <path d="M184 109 Q192 98 200 109"/>
         </g>
-        <g class="eyes eyes-thinking" fill="#3b2a1e">
-          <ellipse cx="46" cy="60" rx="4.5" ry="5.5"/>
-          <ellipse cx="78" cy="60" rx="4.5" ry="5.5"/>
+        <g class="eyes eyes-thinking">
+          <ellipse cx="150" cy="101" rx="7.5" ry="9" fill="#1e2a40"/>
+          <ellipse cx="194" cy="101" rx="7.5" ry="9" fill="#1e2a40"/>
+          <circle cx="153" cy="97" r="3" fill="#fff"/>
+          <circle cx="197" cy="97" r="3" fill="#fff"/>
         </g>
-        <!-- 입 -->
-        <path d="M54 80 Q57 84 60 80 Q63 84 66 80" fill="none" stroke="#3b2a1e" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- 외알 안경과 줄 -->
+        <circle cx="192" cy="106" r="16" fill="#fff" fill-opacity="0.15" stroke="#d4a64a" stroke-width="3"/>
+        <path d="M207 112 C214 126 214 140 206 150" fill="none" stroke="#d4a64a" stroke-width="2" stroke-dasharray="3 3"/>
+        <!-- 부리와 볼 -->
+        <path d="M160 120 Q170 114 180 120 Q170 133 160 120 Z" fill="#f5a742" stroke="#3b2a1e" stroke-width="2"/>
+        <ellipse class="blush" cx="134" cy="124" rx="9" ry="5" fill="#f7a4b4" opacity="0.8"/>
+        <ellipse class="blush" cx="206" cy="124" rx="9" ry="5" fill="#f7a4b4" opacity="0.8"/>
+        <!-- 나비넥타이와 단추 -->
+        <path d="M170 148 L156 140 L156 156 Z M170 148 L184 140 L184 156 Z" fill="#d9534f" stroke="#9e3431" stroke-width="2"/>
+        <circle cx="170" cy="148" r="4" fill="#b8403c"/>
+        <circle cx="170" cy="172" r="3" fill="#2f4468"/>
+        <circle cx="170" cy="190" r="3" fill="#2f4468"/>
+        <!-- 왼쪽 날개: 인사할 때 흔든다 -->
+        <path class="wing-left" d="M112 128 C94 148 94 186 112 206 C118 184 120 156 118 130 Z" fill="#2f4468" stroke="#1c2940" stroke-width="3"/>
+        <!-- 오른쪽 날개와 찻잔 쟁반 -->
+        <g class="tray">
+          <path d="M226 150 C244 150 254 140 252 128 C250 122 242 124 240 130 C238 136 232 140 224 140 Z" fill="#2f4468" stroke="#1c2940" stroke-width="3"/>
+          <ellipse cx="248" cy="122" rx="30" ry="7" fill="#d6dde6" stroke="#5d6b7e" stroke-width="2.5"/>
+          <path d="M236 118 L236 106 Q236 98 246 98 Q256 98 256 106 L256 118 Z" fill="#fff" stroke="#5d6b7e" stroke-width="2.5"/>
+          <path d="M256 104 Q264 104 262 111 Q260 116 256 115" fill="none" stroke="#5d6b7e" stroke-width="2.5"/>
+          <path class="steam" d="M242 92 Q238 86 243 81 M250 92 Q246 86 251 81" fill="none" stroke="#b9c3cf" stroke-width="2"/>
+        </g>
       </svg>
       <span class="dots"><i></i><i></i><i></i></span>
     </button>

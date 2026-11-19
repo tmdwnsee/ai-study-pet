@@ -1,3 +1,6 @@
 data/notion.json
+data/trends.json
+data/trends-ready.json
+data/pet-state.json
 .DS_Store
 pet/node_modules/

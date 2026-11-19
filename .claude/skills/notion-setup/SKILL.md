@@ -28,7 +28,7 @@ Notion 커넥터의 데이터베이스 만들기 도구로 하나씩 만든다. 
 ```json
 {
   "parent_page": "https://www.notion.so/...",
-  "todo": {"url": "https://www.notion.so/...", "id": "..."},
+  "todo": {"url": "https://www.notion.so/...", "data_source": "collection://...", "view": "view://..."},
   "log": {"url": "...", "id": "..."},
   "concepts": {"url": "...", "id": "..."},
   "trends": {"url": "...", "id": "..."},
@@ -36,5 +36,6 @@ Notion 커넥터의 데이터베이스 만들기 도구로 하나씩 만든다. 
 }
 ```
 
+`view`는 만든 데이터베이스를 fetch하면 나오는 Default view 주소다. 조회는 이 view로 한다(무료 요금제에서 시간당 한도가 없음).
 하나라도 실패하면 만든 것과 실패한 것을 그대로 알리고, 실패한 것만 다시 만들지 묻는다.
 끝나면 "1단계 개념 노트 5개를 개념 사전에 넣어 둘까요?"라고 묻고, 동의하면 `docs/concepts/stage1.md`의 다섯 개념을 단계 1, 이해도 비움으로 추가한다.

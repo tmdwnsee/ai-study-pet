@@ -82,6 +82,9 @@ header button:hover { background: #ead6bb; }
 .msg.pet { background: #fff; border: 1px solid #ecdcc6; align-self: flex-start; }
 .msg.me { background: #ffe3b3; align-self: flex-end; }
 .msg.error { background: #fdecea; border: 1px solid #f3b8b0; }
+.msg .status { color: #9a8066; font-size: 12px; }
+.msg .status::before { content: "● "; animation: blink 1.2s infinite; }
+.msg .status + .body:not(:empty) { margin-top: 6px; }
 .msg code { background: #f3e6d3; padding: 0 3px; border-radius: 4px; font-size: 12px; }
 .msg ul { margin: 4px 0; padding-left: 18px; }
 .msg table { border-collapse: collapse; margin: 4px 0; font-size: 12px; }
@@ -162,9 +165,21 @@ header button:hover { background: #ead6bb; }
 @keyframes hop { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-12px); } }
 @keyframes sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
 
+/* 펭집사 움직임: 찻잔 김, 눈 깜빡임, 인사(날개 흔들기), 생각 중(쟁반 기울이기) */
+#pet .steam { animation: steam 2.4s ease-in-out infinite; }
+@keyframes steam { 0% { opacity: 0; transform: translateY(4px); } 40% { opacity: 0.9; } 100% { opacity: 0; transform: translateY(-6px); } }
+#pet .eyes-idle { transform-box: fill-box; transform-origin: center; animation: blink-eye 4.5s infinite; }
+@keyframes blink-eye { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+#pet .wing-left { transform-box: fill-box; transform-origin: 80% 8%; }
+#pet.happy .wing-left { animation: wave 0.3s ease-in-out 4 alternate; }
+@keyframes wave { from { transform: rotate(0deg); } to { transform: rotate(30deg); } }
+#pet .tray { transform-box: fill-box; transform-origin: 10% 90%; }
+#pet.thinking .tray { animation: tilt 1.4s ease-in-out infinite; }
+@keyframes tilt { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+
 .dots { position: absolute; top: 0; left: 50%; transform: translateX(-50%); display: none; gap: 4px; }
 #pet.thinking .dots { display: flex; }
-.dots i { width: 7px; height: 7px; border-radius: 50%; background: #6b4f3a; animation: blink 1.2s infinite; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: #2f4468; animation: blink 1.2s infinite; }
 .dots i:nth-child(2) { animation-delay: 0.2s; }
 .dots i:nth-child(3) { animation-delay: 0.4s; }
 @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }

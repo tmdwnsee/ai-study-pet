@@ -34,8 +34,8 @@
 
 ## 데이터
 - 기록은 Notion에 남긴다. Notion은 claude.ai의 Notion 커넥터로 연결한다.
-- 비서용 Notion 데이터베이스 5개의 링크와 data source(`collection://...`)는 `data/notion.json`에 있다. 없으면 `notion-setup` Skill로 만들자고 제안한다.
-- Notion 조회는 query-data-sources의 `rows` 모드(필터와 정렬)를 쓴다. 무료 요금제는 SQL 모드 사용 횟수에 제한이 있다.
+- 비서용 Notion 데이터베이스 5개의 링크, 조회용 view(`view://...`), 쓰기용 data source(`collection://...`)는 `data/notion.json`에 있다. 없으면 `notion-setup` Skill로 만들자고 제안한다.
+- Notion 조회는 query-data-sources의 `view` 모드(`view_url`에 `view://...`)만 쓴다. `rows`와 `sql` 모드는 무료 요금제에서 시간당 사용 한도가 있어 금방 막힌다. view는 전체 행을 돌려주니 필요한 것은 결과에서 직접 거른다.
 - 데이터베이스에 페이지를 만들 때는 `data_source_id`를 부모로 쓰고, 날짜는 `date:<속성>:start` 형식으로 넣는다.
 - 현재 학습 단계는 `data/progress.json`에 있다.
 - 최신 트렌드 진도는 `data/trends.json`에 있다.

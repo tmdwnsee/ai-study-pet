@@ -98,17 +98,48 @@ async function toggle() {
   }
 }
 
-async function ask(text, label = text) {
+// 답을 기다리는 동안 채워 나가는 말풍선: 위에는 진행 상황, 아래에는 생기는 대로 받은 답
+let current = null;
+
+function startPetMessage() {
+  const div = document.createElement('div');
+  div.className = 'msg pet';
+  div.innerHTML = '<div class="status">생각하는 중…</div><div class="body"></div>';
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+  return { div, status: div.querySelector('.status'), body: div.querySelector('.body'), raw: '' };
+}
+
+window.pet.onProgress((event) => {
+  if (!current) return;
+  if (event.type === 'status') {
+    current.status.textContent = event.text;
+  } else if (event.type === 'delta') {
+    current.raw += event.text;
+    current.body.innerHTML = render(current.raw);
+  }
+  log.scrollTop = log.scrollHeight;
+});
+
+async function ask(text, label = text, kind = 'ask') {
   if (thinking || !text.trim()) return;
   addMessage('me', label);
   setBusy(true);
-  const res = await window.pet.ask(text);
+  current = startPetMessage();
+  const res = kind === 'trends' ? await window.pet.trends() : await window.pet.ask(text);
+  const msg = current;
+  current = null;
   setBusy(false);
-  addMessage('pet', res.text || '(빈 답이 왔어요)', !res.ok);
+  msg.status.remove();
   if (res.ok) {
+    msg.body.innerHTML = render(msg.raw.trim() || res.text || '(빈 답이 왔어요)');
     setMood('happy');
     setTimeout(() => !thinking && setMood('idle'), 1000);
+  } else {
+    msg.div.classList.add('error');
+    msg.body.innerHTML = render(res.text || '문제가 생겼어요.');
   }
+  log.scrollTop = log.scrollHeight;
 }
 
 petEl.addEventListener('click', toggle);
@@ -122,7 +153,9 @@ document.getElementById('reset').addEventListener('click', async () => {
   greeted = true;
 });
 
-menuButtons.forEach((b) => b.addEventListener('click', () => ask(b.dataset.prompt, b.textContent)));
+menuButtons.forEach((b) =>
+  b.addEventListener('click', () => ask(b.dataset.prompt, b.textContent, b.dataset.kind || 'ask'))
+);
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
