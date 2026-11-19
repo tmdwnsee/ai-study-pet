@@ -117,10 +117,32 @@ header button:hover { background: #ead6bb; }
   border-radius: 10px;
   padding: 7px 9px;
   font-size: 13px;
+  font-family: inherit;
+  line-height: 1.4;
   outline: none;
   background: #fff;
+  resize: none;
+  max-height: 96px; /* 약 5줄까지 늘어나고, 넘으면 스크롤 */
+  overflow-y: auto;
 }
 #input:focus { border-color: #6b4f3a; }
+.msg.me { white-space: pre-wrap; } /* 내가 쓴 줄바꿈을 그대로 보여준다 */
+.msg a { color: #2f6db5; text-decoration: underline; cursor: pointer; overflow-wrap: anywhere; }
+.msg.divider {
+  align-self: center;
+  background: none;
+  color: #b09a80;
+  font-size: 11px;
+  padding: 2px 0;
+}
+
+/* 먼저 말 걸 것이 있을 때: 배지 + 가끔 날개를 흔든다 */
+#pet-wrap.has-alert #status { animation: pop 0.4s ease-out; }
+@keyframes pop { 0% { transform: scale(0.4); } 70% { transform: scale(1.15); } 100% { transform: scale(1); } }
+#pet-wrap.has-alert #pet.idle .wing-left { animation: alert-wave 3s ease-in-out infinite; }
+@keyframes alert-wave { 0%, 30%, 100% { transform: rotate(0deg); } 7%, 21% { transform: rotate(30deg); } 14% { transform: rotate(8deg); } }
+#form { align-items: flex-end; }
+#form button { height: 32px; }
 #form button {
   border: none;
   background: #6b4f3a;
